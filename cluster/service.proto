@@ -1,0 +1,12 @@
+syntax = "proto3";
+package cluster_api;
+
+import "cluster/cluster.proto";
+import "cluster/ssh_key.proto";
+import "cluster/virtual_machine.proto";
+
+service ClusterService {
+    rpc CreateCluster (ClusterRequest) returns (ClusterResponse) {}
+    rpc OperateSSHKey (OperateSSHKeyParams) returns (OperateSSHKeyReply) {}
+    rpc CreateVirtualMachine (VirtualMachineRequest) returns (VirtualMachineResponse) {}
+}

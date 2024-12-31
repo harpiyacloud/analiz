@@ -1,0 +1,56 @@
+syntax = "proto3";
+package cluster_api;
+
+
+enum Provider {
+    PROVIDER_GENERIC = 0;
+    PROVIDER_AWS_EC2 = 1;
+    PROVIDER_ALIBABA_CLOUD = 2;
+    PROVIDER_CONTABO = 3;
+    PROVIDER_DIGITAL_OCEAN = 4;
+    PROVIDER_GOOGLE_CLOUD = 5;
+    PROVIDER_HETZNER = 6;
+    PROVIDER_IBMCLOUD = 7;
+    PROVIDER_KAMATERA = 8;
+    PROVIDER_LINODE = 9;
+    PROVIDER_MICROSOFT_AZURE = 10;
+    PROVIDER_OVHCLOUD = 11;
+    PROVIDER_ORACLECLOUD = 12;
+    PROVIDER_RACKSPACE = 13;
+    PROVIDER_SCALEWAY = 14;
+    PROVIDER_TENCENTCLOUD = 15;
+    PROVIDER_VULTR = 16;
+    PROVIDER_YANDEXCLOUD = 17;
+}
+
+message AWSCredential {
+    string aws_access_key_id = 1;
+    string aws_secret_access_key = 2;
+    string aws_availability_zone = 3;
+    string aws_region = 4;
+}
+
+message OCICredential {
+    string oci_user = 1;
+    string oci_public_key = 2;
+    string oci_private_key = 3;
+    string oci_tenancy = 4;
+    string oci_region = 5;
+}
+
+message ClusterRequest {
+    string name = 1;
+    bool public = 2;
+    string image = 3;
+    string monitoring_password = 4;
+    Provider provider = 5;
+    oneof provider_credentials {
+        AWSCredential aws = 6;
+        OCICredential oci = 7;
+    }
+}
+
+message ClusterResponse {
+    bool success = 1;
+    string message = 2;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+package auth_service;
+
+message SignInRequest {
+    string username = 1;
+    string mobile_no = 2;
+    string email = 3;
+    string password = 4;
+}
+
+message AuthorizationResponse {
+    string username = 1;
+    string token = 2;
+    string refresh_token = 3;
+}

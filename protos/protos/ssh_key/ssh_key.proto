@@ -1,0 +1,62 @@
+syntax = "proto3";
+package ssh_key_service;
+
+import "public/common.proto";
+
+message SSHKey {
+    string name = 1;
+    string public_key = 2;
+    string private_key = 3;
+    string owner = 1001;
+    string modified_by = 1002;
+    int64 creation = 1003;
+    int64 modified = 1004;
+    int64 deleted = 1005;
+}
+
+message SSHKeyFilter {
+    repeated string names = 1;
+
+    public.BetweenInt64 delete_time_range = 101;
+    public.BetweenInt64 create_time_range = 102;
+    public.BetweenInt64 update_time_range = 103;
+    
+    repeated string owners = 104;
+    repeated string modifiers = 105;
+
+    public.BooleanScope deleted = 500;
+}
+
+message ListSSHKeyParams {
+    public.Header header = 1;
+    public.Pager pager = 2;
+    repeated public.Sort sorts = 3;
+    SSHKeyFilter filter = 4;
+}
+
+message ListSSHKeyReply {
+    public.ReplyHeader header = 1;
+    public.Pager pager= 2;
+    repeated SSHKey data = 3;
+}
+
+message OperateSSHKeyReply {
+    public.ReplyHeader header = 1;
+    SSHKey data = 2;
+}
+
+message OperateSSHKeyParams {
+    public.Header header = 1;
+    public.Method method = 2;
+    SSHKey data = 3;
+}
+
+message BatchOperateSSHKeyParams {
+    public.Header header = 1;
+    public.Method method = 2;
+    repeated SSHKey data = 3;
+}
+
+message BatchOperateSSHKeyReply {
+    public.ReplyHeader header = 1;
+}

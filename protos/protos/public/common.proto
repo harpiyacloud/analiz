@@ -1,0 +1,79 @@
+syntax = "proto3";
+package public;
+
+import "public/ecode.proto";
+
+
+message Header {
+    string trace_id = 1;
+    string source = 2;
+}
+
+message ReplyHeader {
+    string trace_id = 1;
+    ecode.ECode code = 2;
+    string message = 3;
+}
+
+enum BooleanScope {
+    BOOL_ALL = 0; // DEFAULT
+    BOOL_FALSE = 1; // FALSE
+    BOOL_TRUE = 2; // TRUE
+}
+
+message Pager {
+    uint64 index = 1; // Page Number
+    uint64 size = 2; // Quantity
+    uint64 count = 3; // The total amount
+    bool disabled = 5; // Disable paging
+}
+
+enum RangeScope {
+    RANGE_ALL = 0;
+    RANGE_LEFT = 1;
+    RANGE_RIGHT = 2;
+}
+
+
+message RangeI64 {
+    int64 left = 1;
+    int64 right = 2;
+    RangeScope scope = 3;
+}
+
+enum SortDirection {
+    SORT_ASC = 0;
+    SORT_DESC = 1;
+}
+
+message BetweenInt64 {
+    RangeScope scope = 1;
+    int64 left = 2;
+    int64 right = 3;
+}
+
+message Sort {
+    string field = 1;
+    SortDirection direction = 2;
+}
+
+enum Method {
+    CREATE = 0;
+    UPDATE = 1;
+    DELETE = 2;
+
+   // High-order method types
+    UPSERT = 101;
+}
+
+message Uuid {
+    string value = 1;
+}
+
+enum TaskStatus {
+    PENDING = 0;
+    RUNNING = 1;
+    SUCCESS = 2;
+    FAILURE = 4;
+    FINALLY = 5;
+}

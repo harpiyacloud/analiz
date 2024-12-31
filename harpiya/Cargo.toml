@@ -1,0 +1,30 @@
+[package]
+name = "harpiya"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+argon2.workspace = true
+base64.workspace = true
+bcrypt.workspace = true
+chrono.workspace = true
+dotenvy.workspace = true
+regex.workspace = true
+sea-orm.workspace = true
+tokio.workspace = true
+tonic-types.workspace = true
+tonic.workspace = true
+tracing-subscriber.workspace = true
+tracing.workspace = true
+
+harpiya-domain = { version = "0.1.0", path = "../harpiya-domain" }
+harpiya-model = { version = "0.1.0", path = "../harpiya-model" }
+jwt.workspace = true
+sha2.workspace = true
+hmac.workspace = true
+faster-hex = "0.10.0"
+hkdf.workspace = true
+aes-gcm-siv = "0.11.1"
+rand.workspace = true
+
+

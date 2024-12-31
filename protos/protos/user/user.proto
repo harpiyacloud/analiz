@@ -1,0 +1,102 @@
+syntax = "proto3";
+package user_service;
+
+import "public/common.proto";
+
+
+message User {
+    string name = 1;
+    string email = 2;
+    string username = 3;
+    string password = 4;
+    bool enabled = 5;
+    string first_name = 6;
+    optional string middle_name = 7;
+    optional string last_name = 8;
+    string full_name = 9;
+    string language = 10;
+    string time_zone = 11;
+    bool send_welcome_email = 12;
+    bool unsubscribed = 13;
+    optional string user_image = 14;
+    optional string gender = 15;
+    optional int64 birth_date = 16;
+    optional string phone = 17;
+    optional string location = 18;
+    optional string bio = 19;
+    optional string mobile_no = 20;
+    optional string banner_image = 21;
+    optional string new_password = 22;
+    bool logout_all_sessions = 23;
+    optional string reset_password_key = 24;
+    optional int64 last_reset_password_key_generated_on = 25;
+    optional int64 last_password_reset_date = 26;
+    optional string email_signature = 27;
+    bool simultaneous_sessions = 28;
+    optional string last_ip = 29;
+    optional string last_login = 30;
+    optional int32 login_after = 31;
+    optional int32 login_before = 32;
+    optional string user_type = 33;
+    optional int64 last_active = 34;
+    bool bypass_restrict_ip_check_if_2fa_enabled = 35;
+    optional string last_known_versions = 36;
+    optional string api_key = 37;
+    optional string api_secret = 38;
+    string owner = 1001;
+    string modified_by = 1002;
+    int64 creation = 1003;
+    int64 modified = 1004;
+    int64 deleted = 1005;
+}
+
+message UserFilter {
+    repeated string names = 1;
+    repeated string username = 2;
+    repeated string email = 3;
+    repeated string first_name = 4;
+    repeated string last_name = 5;
+
+    public.BetweenInt64 delete_time_range = 101;
+    public.BetweenInt64 create_time_range = 102;
+    public.BetweenInt64 update_time_range = 103;
+
+    repeated string owners = 104;
+    repeated string modifiers = 105;
+
+    public.BooleanScope deleted = 500;
+}
+
+message ListUserParams {
+    public.Header header = 1;
+    public.Pager pager = 2;
+    repeated public.Sort sorts = 3;
+    UserFilter filter = 4;
+}
+
+message ListUserReply {
+    public.ReplyHeader header = 1;
+    public.Pager pager = 2;
+    repeated User data = 3;
+}
+
+message OperateUserParams {
+    public.Header header = 1;
+    public.Method method = 2;
+    User data = 3;
+}
+
+message OperateUserReply {
+    public.ReplyHeader header = 1;
+    User data = 2;
+}
+
+message BatchOperateUserParams {
+    public.Header header = 1;
+    public.Method method = 2;
+    repeated User data = 3; 
+}
+
+message BatchOperateUserReply {
+    public.ReplyHeader header = 1;
+}

@@ -1,0 +1,12 @@
+[package]
+name = "protos"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pb-jelly = "0.0.15"
+pb-jelly-gen = "0.0.15"
+prost.workspace = true
+tonic.workspace = true
+tonic-build = "0.10.2"
+

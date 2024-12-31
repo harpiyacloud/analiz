@@ -1,0 +1,15 @@
+syntax = "proto3";
+package cluster_api;
+
+message VirtualMachineRequest {
+    string name = 1;
+    string cluster_id = 2;
+    string machine_image = 3;
+    string machine_type = 4;
+    string private_ip = 5;
+}
+
+message VirtualMachineResponse {
+    bool success = 1;
+    string message = 2;
+}

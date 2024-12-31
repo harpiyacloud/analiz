@@ -1,0 +1,10 @@
+syntax = "proto3";
+package user_service;
+
+import "user/user.proto";
+
+service UserService {
+    rpc ListUser(ListUserParams) returns(ListUserReply);
+    rpc OperateUser(OperateUserParams) returns(OperateUserReply);
+    rpc BatchOperateUser(BatchOperateUserParams) returns(BatchOperateUserReply);
+}

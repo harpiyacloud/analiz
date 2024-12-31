@@ -1,0 +1,10 @@
+syntax = "proto3";
+package ssh_key_service;
+
+import "ssh_key/ssh_key.proto";
+
+service SSHKeyService {
+    rpc ListSSHKey(ListSSHKeyParams) returns (ListSSHKeyReply);
+    rpc OperateSSHKey(OperateSSHKeyParams) returns (OperateSSHKeyReply);
+    rpc BatchOperateSSHKey(BatchOperateSSHKeyParams) returns (BatchOperateSSHKeyReply);
+}

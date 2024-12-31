@@ -1,0 +1,47 @@
+syntax = "proto3";
+package ecode;
+
+enum ECode {
+    SUCCESS = 0; // Request successful
+
+    // ######### Client error #########
+    BAD_REQUEST = 400000;
+
+    // auth token error
+    AUTH_TOKEN_Required = 400001; // The account is not logged in
+    AUTH_TOKEN_Invalid = 400002; // Invalid Token
+    AUTH_TOKEN_NotFound = 400003; // Token does not exist
+    AUTH_TOKEN_Expired = 400004; // Token expired
+
+    // access error
+    ACCESS_NotFound = 401001; //The requested resource does not exist
+    ACCESS_Forbidden = 401002; // No access permission
+    ACCESS_Disabled = 401003; // The interface is disabled
+
+    // ######### Parameter error #########
+    INVALID_PARAMS = 431000; // Parameter exception
+
+    // user params error
+    USER_PARAMS_ERROR_NameRequired = 431001; // Parameter missing name
+    USER_PARAMS_ERROR_UsernameRequired = 431002; // Parameter is missing username
+    USER_PARAMS_ERROR_PasswordRequired = 431003; // Parameter missing password
+    USER_PARAMS_ERROR_UsernameExist = 431004; // Username already exists
+    USER_PARAMS_ERROR_UserNotFound = 431005; // User does not exist
+
+    // user login
+    USER_PARAMS_ERROR_NameInvalid = 431006; // Invalid name
+    USER_PARAMS_ERROR_UsernameInvalid = 431007; // Invalid username
+    USER_PARAMS_ERROR_PasswordInvalid = 431008; // Invalid password
+
+    // ######### Server error #########
+    SYSTEM_INTERNAL_ERROR = 500000;
+    SYSTEM_ERROR_Unimplemented = 500001;
+
+    // public-service label error
+    PUBLIC_SERVICE_ERROR_ListLabel = 520001; // PUBLIC_SERVICE_ERROR_ListLabel
+    PUBLIC_SERVICE_ERROR_OperateLabel = 520002; // PUBLIC_SERVICE_ERROR_OperateLabel
+    PUBLIC_SERVICE_ERROR_BatchOperateLabel = 520003; // PUBLIC_SERVICE_ERROR_BatchOperateLabel
+
+    // public-service list enum error
+    PUBLIC_SERVICE_ERROR_ListEnum = 521001; // PUBLIC_SERVICE_ERROR_ListEnum
+}
